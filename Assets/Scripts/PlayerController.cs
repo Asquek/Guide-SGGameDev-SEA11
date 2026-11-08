@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Gerakin lewat physics
+        // Gerakin lewat physics (Unity lama: rb.velocity)
         rb.linearVelocity = moveInput * moveSpeed;
 
         // Batasi player biar ga keluar dari map
@@ -50,5 +50,12 @@ public class PlayerController : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, -mapHalfSize.x, mapHalfSize.x);
         pos.y = Mathf.Clamp(pos.y, -mapHalfSize.y, mapHalfSize.y);
         rb.position = pos;
+    }
+
+    // BARU: dipanggil menu upgrade. 0.1 = kecepatan naik 10%
+    public void UpgradeMoveSpeed(float percent)
+    {
+        moveSpeed *= 1f + percent;
+        Debug.Log($"Move speed jadi {moveSpeed:F2}");
     }
 }
