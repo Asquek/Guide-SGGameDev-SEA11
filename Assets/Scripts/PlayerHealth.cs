@@ -52,6 +52,13 @@ public class PlayerHealth : MonoBehaviour
         OnHealthChanged?.Invoke(CurrentHealth, maxHealth);
     }
 
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;                                   // Naikkan batas HP
+        CurrentHealth += amount;                               // HP sekarang ikut naik (bonus langsung kerasa)
+        OnHealthChanged?.Invoke(CurrentHealth, maxHealth);     // Umumin supaya bar HP ikut update
+    }
+
     private void Die()
     {
         IsDead = true;                                                 // Tandai mati (dicek musuh & spawner)
